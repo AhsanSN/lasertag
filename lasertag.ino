@@ -14,7 +14,7 @@ void setup() {
   pinMode(14, OUTPUT); //gun deactive (red light)
   pinMode(12, OUTPUT); //gun deactive (motor)
 
-  pinMode(8, OUTPUT); //gun POWER LIGHT 
+  pinMode(8, OUTPUT); //gun POWER (motor)
 
   //level lights
   pinMode(11, OUTPUT); //gun active (green light)
@@ -25,7 +25,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(8, HIGH); //turn red light on
+  digitalWrite(8, HIGH); //turn POWER light on
+  
   //gun activity light
   if(isGunActive == true)
   {  
@@ -39,15 +40,15 @@ void loop() {
     //detct enemy fire
     int sensorValue = analogRead(A0);
     Serial.println(sensorValue);
-    if (sensorValue > 400) //threshold
+    if (sensorValue > 50) //threshold
     {
         isGunActive = false;
-        digitalWrite(14, HIGH); //turn . light off
-        digitalWrite(13, HIGH); //turn RED light on
+        digitalWrite(14, HIGH); //turn red light off
+        digitalWrite(13, HIGH); //turn green light on
         Serial.print("\' Fire detected. Level:  \'");
         Serial.print(hitCount);
         digitalWrite(12, HIGH); //turn motor on
-        hitCount = hitCount + 4;
+        hitCount = hitCount + 1;
         delay(1000); //5 seconds delay
         digitalWrite(12, LOW); //turn motor off
         delay(1000); //5 seconds delay
