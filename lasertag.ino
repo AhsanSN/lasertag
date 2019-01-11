@@ -30,7 +30,7 @@ void loop() {
   //gun activity light
   if(isGunActive == true)
   {  
-    digitalWrite(13, LOW); //turn red light on
+    digitalWrite(13, HIGH); //turn green light on
     digitalWrite(14, LOW); //turn red light off
     
   }
@@ -43,14 +43,15 @@ void loop() {
     if (sensorValue > 50) //threshold
     {
         isGunActive = false;
-        digitalWrite(14, HIGH); //turn red light off
-        digitalWrite(13, HIGH); //turn green light on
+        digitalWrite(14, HIGH); //turn red light on
+        digitalWrite(13, LOW); //turn green light off
         Serial.print("\' Fire detected. Level:  \'");
         Serial.print(hitCount);
         digitalWrite(12, HIGH); //turn motor on
         hitCount = hitCount + 1;
         delay(1000); //5 seconds delay
         digitalWrite(12, LOW); //turn motor off
+        digitalWrite(13, HIGH); //turn green light on
         delay(1000); //5 seconds delay
         sensorValue = 0;
         isGunActive = true; //open lock
@@ -78,7 +79,8 @@ void loop() {
     digitalWrite(11, LOW); //level 3 light
     delay(400);                       // wait for a second
     isGunActive = false;
-    Serial.print("\' Person dead  \'");    
+    Serial.print("\' Person dead  \'"); 
+    digitalWrite(13, LOW); //turn green light off  
   }
 }
 
