@@ -17,15 +17,15 @@ void setup() {
   pinMode(8, OUTPUT); //gun POWER (motor)
 
   //level lights
-  pinMode(11, OUTPUT); //gun active (green light) lvl 3
-  pinMode(10, OUTPUT); //gun deactive (red light) lvl 2
-  pinMode(9, OUTPUT); //gun deactive (motor) lvl 1
+  pinMode(11, OUTPUT); //gun active  lvl 3
+  pinMode(10, OUTPUT); //gun deactive ) lvl 2
+  pinMode(9, OUTPUT); //gun deactive  lvl 1
   
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(8, HIGH); //turn POWER light on
+  //digitalWrite(8, HIGH); //turn POWER light on
   
   //gun activity light
   if(isGunActive == true)
