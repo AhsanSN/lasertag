@@ -20,12 +20,12 @@ void setup() {
   pinMode(12, OUTPUT); //gun active  lvl 3
   pinMode(10, OUTPUT); //gun deactive ) lvl 2
   pinMode(9, OUTPUT); //gun deactive  lvl 1
+  analogWrite(11, 255);
   
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //digitalWrite(8, HIGH); //turn POWER light on
   
   //gun activity light
   if(isGunActive == true)
@@ -47,12 +47,14 @@ void loop() {
         digitalWrite(13, LOW); //turn green light off
         Serial.print("\' Fire detected. Level:  \'");
         Serial.print(hitCount);
-        digitalWrite(11, HIGH); //turn motor on
+        //digitalWrite(11, HIGH); //turn motor on
+        analogWrite(11, 0);
         hitCount = hitCount + 1;
-        delay(1000); //5 seconds delay
-        digitalWrite(11, LOW); //turn motor off
+        delay(4000); //5 seconds delay
+        //digitalWrite(11, LOW); //turn motor off
+        analogWrite(11, 255);
         digitalWrite(13, HIGH); //turn green light on
-        delay(1000); //5 seconds delay
+        delay(3000); //5 seconds delay
         sensorValue = 0;
         isGunActive = true; //open lock
         sensorValue = 0;
@@ -82,5 +84,7 @@ void loop() {
     Serial.print("\' Person dead  \'"); 
     digitalWrite(13, LOW); //turn green light off  
   }
+
+  
 }
 
