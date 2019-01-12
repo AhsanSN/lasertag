@@ -12,12 +12,12 @@ void setup() {
   
   pinMode(13, OUTPUT); //gun active (green light)
   pinMode(14, OUTPUT); //gun deactive (red light)
-  pinMode(12, OUTPUT); //gun deactive (motor)
+  pinMode(11, OUTPUT); //gun deactive (motor)
 
   pinMode(8, OUTPUT); //gun POWER (motor)
 
   //level lights
-  pinMode(11, OUTPUT); //gun active  lvl 3
+  pinMode(12, OUTPUT); //gun active  lvl 3
   pinMode(10, OUTPUT); //gun deactive ) lvl 2
   pinMode(9, OUTPUT); //gun deactive  lvl 1
   
@@ -47,10 +47,10 @@ void loop() {
         digitalWrite(13, LOW); //turn green light off
         Serial.print("\' Fire detected. Level:  \'");
         Serial.print(hitCount);
-        digitalWrite(12, HIGH); //turn motor on
+        digitalWrite(11, HIGH); //turn motor on
         hitCount = hitCount + 1;
         delay(1000); //5 seconds delay
-        digitalWrite(12, LOW); //turn motor off
+        digitalWrite(11, LOW); //turn motor off
         digitalWrite(13, HIGH); //turn green light on
         delay(1000); //5 seconds delay
         sensorValue = 0;
@@ -67,16 +67,16 @@ void loop() {
     digitalWrite(10, HIGH); //level 2 light
   }
   if(hitCount>=9){
-    digitalWrite(11, HIGH); //level 3 light
+    digitalWrite(12, HIGH); //level 3 light
   }
   if(hitCount>=10){
      digitalWrite(9, HIGH); //level 3 light
     digitalWrite(10, HIGH); //level 3 light
-    digitalWrite(11, HIGH); //level 3 light
+    digitalWrite(12, HIGH); //level 3 light
     delay(400); //5 seconds delay
     digitalWrite(9, LOW); //level 3 light
     digitalWrite(10, LOW); //level 3 light
-    digitalWrite(11, LOW); //level 3 light
+    digitalWrite(12, LOW); //level 3 light
     delay(400);                       // wait for a second
     isGunActive = false;
     Serial.print("\' Person dead  \'"); 
