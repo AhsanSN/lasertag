@@ -11,15 +11,13 @@ void setup() {
   
   pinMode(13, OUTPUT); //gun active (green light)
   pinMode(14, OUTPUT); //gun deactive (red light)
-  pinMode(8, OUTPUT); //gun deactive (motor)
-
-  pinMode(8, OUTPUT); //gun POWER (motor)
+  //pinMode(8, OUTPUT); //gun deactive (motor)
 
   //level lights
   pinMode(12, OUTPUT); //gun active  lvl 3
   pinMode(7, OUTPUT); //gun deactive ) lvl 2
   pinMode(4, OUTPUT); //gun deactive  lvl 1
-  analogWrite(11, 255);
+  //digitalWrite(8, LOW); //turn motor off
   
 }
 
@@ -47,14 +45,14 @@ void loop() {
         digitalWrite(13, LOW); //turn green light off
         Serial.print("\' Fire detected. Level:  \'");
         Serial.print(hitCount);
-        digitalWrite(8, LOW); //turn motor on
+        //digitalWrite(8, LOW); //turn motor on
         //analogWrite(11, 0);
         hitCount = hitCount + 1;
-        delay(400); //5 seconds delay
+        delay(4000); //5 seconds delay
         //analogWrite(11, 255);
-        digitalWrite(8, HIGH); //turn red light on
+        //digitalWrite(8, HIGH); //turn motor off
         digitalWrite(13, HIGH); //turn green light on
-        delay(300); //5 seconds delay
+        delay(3000); //5 seconds delay
         sensorValue = 0;
         isGunActive = true; //open lock
         sensorValue = 0;
@@ -81,7 +79,7 @@ void loop() {
     digitalWrite(12, LOW); //level 3 light
     delay(400);                       // wait for a second
     isGunActive = false;
-    Serial.print("\' Person dead  \'"); 
+    Serial.print("\' Person dead  \'/n"); 
     digitalWrite(13, LOW); //turn green light off  
   }
 }
