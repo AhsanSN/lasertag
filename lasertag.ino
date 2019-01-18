@@ -11,7 +11,7 @@ void setup() {
   
   pinMode(13, OUTPUT); //gun active (green light)
   pinMode(14, OUTPUT); //gun deactive (red light)
-  pinMode(11, OUTPUT); //gun deactive (motor)
+  pinMode(8, OUTPUT); //gun deactive (motor)
 
   pinMode(8, OUTPUT); //gun POWER (motor)
 
@@ -47,12 +47,12 @@ void loop() {
         digitalWrite(13, LOW); //turn green light off
         Serial.print("\' Fire detected. Level:  \'");
         Serial.print(hitCount);
-        //digitalWrite(11, HIGH); //turn motor on
-        analogWrite(11, 0);
+        digitalWrite(8, LOW); //turn motor on
+        //analogWrite(11, 0);
         hitCount = hitCount + 1;
         delay(400); //5 seconds delay
-        //digitalWrite(11, LOW); //turn motor off
-        analogWrite(11, 255);
+        //analogWrite(11, 255);
+        digitalWrite(8, HIGH); //turn red light on
         digitalWrite(13, HIGH); //turn green light on
         delay(300); //5 seconds delay
         sensorValue = 0;
@@ -93,4 +93,5 @@ void loop() {
 
  exchanging 10 with 7
  and 9 with 4
+ and 11 with 8
  **/
