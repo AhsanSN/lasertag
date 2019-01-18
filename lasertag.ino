@@ -3,7 +3,6 @@ int sensorValue;
 int timeGunStopped;
 int hitCount = 0;
 
-
 void setup() {
   // put your setup code here, to run once:
   
@@ -18,13 +17,14 @@ void setup() {
 
   //level lights
   pinMode(12, OUTPUT); //gun active  lvl 3
-  pinMode(10, OUTPUT); //gun deactive ) lvl 2
-  pinMode(9, OUTPUT); //gun deactive  lvl 1
+  pinMode(7, OUTPUT); //gun deactive ) lvl 2
+  pinMode(4, OUTPUT); //gun deactive  lvl 1
   analogWrite(11, 255);
   
 }
 
 void loop() {
+
   // put your main code here, to run repeatedly:
   
   //gun activity light
@@ -50,11 +50,11 @@ void loop() {
         //digitalWrite(11, HIGH); //turn motor on
         analogWrite(11, 0);
         hitCount = hitCount + 1;
-        delay(4000); //5 seconds delay
+        delay(400); //5 seconds delay
         //digitalWrite(11, LOW); //turn motor off
         analogWrite(11, 255);
         digitalWrite(13, HIGH); //turn green light on
-        delay(3000); //5 seconds delay
+        delay(300); //5 seconds delay
         sensorValue = 0;
         isGunActive = true; //open lock
         sensorValue = 0;
@@ -63,28 +63,34 @@ void loop() {
 
   //set level lights
   if(hitCount>=3){
-    digitalWrite(9, HIGH); //level 1 light
+    digitalWrite(4, HIGH); //level 1 light
   }
   if(hitCount>=6){
-    digitalWrite(10, HIGH); //level 2 light
+    digitalWrite(7, HIGH); //level 2 light
   }
   if(hitCount>=9){
     digitalWrite(12, HIGH); //level 3 light
   }
   if(hitCount>=10){
-     digitalWrite(9, HIGH); //level 3 light
-    digitalWrite(10, HIGH); //level 3 light
+     digitalWrite(4, HIGH); //level 3 light
+    digitalWrite(7, HIGH); //level 3 light
     digitalWrite(12, HIGH); //level 3 light
     delay(400); //5 seconds delay
-    digitalWrite(9, LOW); //level 3 light
-    digitalWrite(10, LOW); //level 3 light
+    digitalWrite(4, LOW); //level 3 light
+    digitalWrite(7, LOW); //level 3 light
     digitalWrite(12, LOW); //level 3 light
     delay(400);                       // wait for a second
     isGunActive = false;
     Serial.print("\' Person dead  \'"); 
     digitalWrite(13, LOW); //turn green light off  
   }
-
-  
 }
 
+/**
+ * 
+ * 
+ notes: ouput 12 and 13 have some problem.
+
+ exchanging 10 with 7
+ and 9 with 4
+ **/
